@@ -4,8 +4,8 @@ const Users = require("./models/users");
 
 function initialize(passport) {
     passport.use(
-        new LocalStrategy((username, password, done) => {
-            Users.findOne((username, password), (error, user) => {
+        new LocalStrategy((email, password, done) => {
+            Users.findOne((email, password), (error, user) => {
                 if (error) throw error;
                 if (!user) return done(null, false);
                 bcrypt.compare(password, user.password, (error, result) => {
@@ -21,7 +21,7 @@ function initialize(passport) {
     passport.deSerializeUser((id, done) => {
         Users.findOne({ _id: id }, (error, user) => {
             const userInformation = {
-                username: user.username,
+                email: user.email,
             };
             done(error, userInformation);
         });

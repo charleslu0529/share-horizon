@@ -18,21 +18,6 @@ router.get("/current", (req, res)=> {
 });
 
 router.post("/", async (req, res) => {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const newUser = new Users({
-        username: req.body.username,
-        email: req.body.email,
-        password: hashedPassword,
-    });
-    try {
-        const savedUser = await newUser.save();
-        res.status(200).json(savedUser);
-    } catch (error) {
-        res.status(500).json({ message: error });
-    }
-});
-
-router.post("/register", async (req, res) => {
     Users.findOne({ username: req.body.username }, async (error, doc) => {
         if (error) throw error;
         if (doc) res.send("User already exists");
@@ -40,11 +25,16 @@ router.post("/register", async (req, res) => {
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
             const newUser = new Users({
-                username: req.body.username,
+                name: req.body.name,
+                email: req.body.email,
                 password: hashedPassword,
             });
-            await newUser.save();
-            res.status(201).send("User Created");
+            try {
+                const savedUser = await newUser.save();
+                res.status(201).json("User Created");
+            } catch (error) {
+                res.status(500).json({ message: error });
+            }
         }
     });
 });
