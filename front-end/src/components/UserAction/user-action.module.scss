@@ -1,0 +1,9 @@
+@use "../../styles/partials/variables" as var;
+
+.userAction {
+    display: flex;
+
+    &__signOut {
+        border-color: var.$theme;
+    }
+}

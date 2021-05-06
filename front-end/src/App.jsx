@@ -10,10 +10,11 @@ import SignUp from "./components/SignUp/SignUp";
 function App() {
     const [user, setUser] = useState(null);
 
-    useEffect(() => {
+    const getUser = () => {
         axios
             .get(api.apiUrl + api.usersEndpoint + api.currentUser)
-            .then(response=>{
+            .then((response) => {
+                console.log("Getting user", response.data);
                 setUser(response.data);
             })
             .catch((error) => {
@@ -22,16 +23,42 @@ function App() {
                     error
                 );
             });
-    }, []);
+    };
+
+    useEffect(() => {
+        getUser();
+    },[]);
+
+    // useEffect(()=>{
+    //     console.log(user);
+    // });
 
     return (
         <div className="App">
-            <Header user={user}/>
+            <Header user={user} updateUser={getUser} />
             <main>
                 <Switch>
-                    <Route path="/" exact render={(props) => <Browse {...props} />} />
-                    <Route path="/login" exact render={(props) => <Login {...props} />} />
-                    <Route path="/sign-up" exact render={(props) => <SignUp {...props} />} />
+                    <Route
+                        path="/"
+                        exact
+                        render={(props) => <Browse {...props} />}
+                    />
+                    <Route
+                        path="/login"
+                        exact
+                        render={(props) => (
+                            <Login
+                                {...props}
+                                setUser={setUser}
+                                updateUser={getUser}
+                            />
+                        )}
+                    />
+                    <Route
+                        path="/sign-up"
+                        exact
+                        render={(props) => <SignUp {...props} />}
+                    />
                 </Switch>
             </main>
         </div>

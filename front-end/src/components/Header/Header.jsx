@@ -1,13 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import classes from "./header.module.scss";
 import searchIcon from "../../assets/images/icons/search-icon.svg";
 import GuestAction from "../GuestAction/GuestAction";
+import UserAction from "../UserAction/UserAction";
 
 function Header(props) {
 
-    let action = props.user ? <></>:<GuestAction />;
+    let action = props.user ? <UserAction {...props} />:<GuestAction />;
 
     return (
         <header className={classes.header}>

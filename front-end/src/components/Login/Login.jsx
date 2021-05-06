@@ -3,17 +3,30 @@ import api from "../../utils/api-details";
 import axios from "axios";
 import classes from "./login.module.scss";
 
-function Login() {
+function Login(props) {
+
+    const [state, setState] = useState({});
+
+    const handleInputChange = (event) => {
+        // event.preventDefault();
+        setState({
+            ...state,
+            [event.target.name]: event.target.value,
+        });
+    }
 
     const login = (event) => {
         event.preventDefault();
         axios
             .post(`${api.apiUrl}${api.usersEndpoint}/login`, {
-                username: event.target.email,
-                password: event.target.password,
+                username: event.target.email.value,
+                password: event.target.password.value,
             })
-            .then((response) => console.log(response))
-            .catch((error) => console.error("Failed registering user", error));
+            .then(() => {
+                props.updateUser();
+                props.history.push("/");
+            })
+            .catch((error) => console.error("Failed logging user in", error));
     };
     return (
         <div className={classes.container}>
@@ -22,6 +35,7 @@ function Login() {
                 onSubmit={(event) => {
                     login(event);
                 }}
+                onChange={(event)=>{handleInputChange(event)}}
             >
                 <h1 className={classes.login__title}>Login to your account</h1>
                 <label htmlFor="" className={classes.login__label}>

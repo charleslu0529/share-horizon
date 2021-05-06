@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Users = require("../models/users");
 const bcrypt = require("bcryptjs");
-const passport = require("passport");
+const passport = require("../Authentication/authenticator");
 
 router.get("/", async (req, res) => {
     try {
@@ -25,12 +25,12 @@ router.post("/", async (req, res) => {
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
             const newUser = new Users({
-                name: req.body.name,
-                email: req.body.email,
+                username: req.body.username,
+                email: req.body.username,
                 password: hashedPassword,
             });
             try {
-                const savedUser = await newUser.save();
+                await newUser.save();
                 res.status(201).json("User Created");
             } catch (error) {
                 res.status(500).json({ message: error });
@@ -39,18 +39,22 @@ router.post("/", async (req, res) => {
     });
 });
 
-router.post("/login", async (req, res, next) => {
+router.post("/login", (req, res, next) => {
     passport.authenticate("local", (error, user, info) => {
         if (error) throw error;
-        if (!user) res.send("User not found");
+        if (!user) res.status(500).json(info);
         else {
             req.login(user, (error) => {
                 if (error) throw error;
                 res.send("Logged in successfully");
-                console.log(req.user);
             });
         }
     })(req, res, next);
+});
+
+router.post("/logout", (req,res)=>{
+    req.logout();
+    res.status(200).send("User logged out");
 });
 
 module.exports = router;

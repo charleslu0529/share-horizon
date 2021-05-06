@@ -6,10 +6,8 @@ const app = express();
 const userRoute = require("./routes/users");
 const designsRoute = require("./routes/designs");
 const initializePassport = require("./passport-config");
-const Users = require("./models/users");
-const passport = require("passport");
+const passport = require("./Authentication/authenticator");
 const { PORT, BACKEND_URL, DB_URL } = process.env;
-
 
 app.use(express.json());
 app.use(cors());
@@ -17,6 +15,7 @@ app.use(express.static("public"));
 app.use(passport.initialize());
 app.use(passport.session());
 initializePassport(passport);
+
 app.use("/users", userRoute);
 app.use("/designs", designsRoute);
 
