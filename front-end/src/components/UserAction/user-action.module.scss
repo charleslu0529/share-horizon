@@ -14,9 +14,6 @@
     }
 
     &__signOut {
-        border-color: var.$theme;
-        border-width: 1px;
-        background: #ffffff00;
         transition: all ease 0.2s;
         flex-grow: 1;
         margin-right: 8px;
@@ -26,9 +23,7 @@
             padding: 8px;
         }
 
-        &:hover {
-            background: linear-gradient( #ffffff00 50%, #ffffff11 100%);
-        }
+        
     }
 
     &__profile {

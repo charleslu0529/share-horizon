@@ -1,0 +1,17 @@
+@use "../../styles/partials/variables" as var;
+@use "../../styles/partials/responsive" as res;
+@use "../../styles/partials/functions" as func;
+
+.profile{
+
+    &__content{
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+
+        @include res.tablet-up{
+            flex-direction: row;
+            padding:50px
+        }
+    }
+}

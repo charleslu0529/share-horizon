@@ -27,7 +27,7 @@ function UserAction(props) {
                 Sign Out
             </button>
             <Link
-                to={`/profile/${props.user._id}`}
+                to={`/profile`}
                 className={classes.userAction__profile}
             >
                 <img
