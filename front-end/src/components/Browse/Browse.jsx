@@ -4,7 +4,6 @@ export class Browse extends Component {
     render() {
         return (
             <div>
-                
             </div>
         )
     }

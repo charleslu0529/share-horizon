@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Users = require("../models/users");
 const bcrypt = require("bcryptjs");
-const passport = require("passport");
+const passport = require("../Authentication/authenticator");
 
 router.get("/", async (req, res) => {
     try {
@@ -18,21 +18,6 @@ router.get("/current", (req, res)=> {
 });
 
 router.post("/", async (req, res) => {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const newUser = new Users({
-        username: req.body.username,
-        email: req.body.email,
-        password: hashedPassword,
-    });
-    try {
-        const savedUser = await newUser.save();
-        res.status(200).json(savedUser);
-    } catch (error) {
-        res.status(500).json({ message: error });
-    }
-});
-
-router.post("/register", async (req, res) => {
     Users.findOne({ username: req.body.username }, async (error, doc) => {
         if (error) throw error;
         if (doc) res.send("User already exists");
@@ -41,26 +26,35 @@ router.post("/register", async (req, res) => {
 
             const newUser = new Users({
                 username: req.body.username,
+                email: req.body.username,
                 password: hashedPassword,
             });
-            await newUser.save();
-            res.status(201).send("User Created");
+            try {
+                await newUser.save();
+                res.status(201).json("User Created");
+            } catch (error) {
+                res.status(500).json({ message: error });
+            }
         }
     });
 });
 
-router.post("/login", async (req, res, next) => {
+router.post("/login", (req, res, next) => {
     passport.authenticate("local", (error, user, info) => {
         if (error) throw error;
-        if (!user) res.send("User not found");
+        if (!user) res.status(500).json(info);
         else {
             req.login(user, (error) => {
                 if (error) throw error;
                 res.send("Logged in successfully");
-                console.log(req.user);
             });
         }
     })(req, res, next);
+});
+
+router.post("/logout", (req,res)=>{
+    req.logout();
+    res.status(200).send("User logged out");
 });
 
 module.exports = router;
