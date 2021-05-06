@@ -1,7 +1,14 @@
+@use "../../styles/partials/responsive" as res;
+
 .logo{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 12px 0;
+
+    @include res.tablet-up{
+        justify-content: flex-start;
+        width: fit-content;
+    }
 }

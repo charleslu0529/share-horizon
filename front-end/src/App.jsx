@@ -8,7 +8,12 @@ import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 
 function App() {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({
+        _id: "6092090a4613a059fc8c1787",
+        username: "test@test.com",
+        email: "test@test.com",
+        image: "20200313_202417_001.jpg",
+    });
 
     const getUser = () => {
         axios
@@ -26,8 +31,8 @@ function App() {
     };
 
     useEffect(() => {
-        getUser();
-    },[]);
+        // getUser();
+    }, []);
 
     // useEffect(()=>{
     //     console.log(user);

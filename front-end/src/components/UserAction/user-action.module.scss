@@ -1,9 +1,44 @@
 @use "../../styles/partials/variables" as var;
+@use "../../styles/partials/responsive" as res;
+@use "../../styles/partials/functions" as func;
 
 .userAction {
+    padding-bottom: 8px;
     display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    @include res.tablet-up {
+        padding:0;
+        margin-left: 24px;
+    }
 
     &__signOut {
         border-color: var.$theme;
+        border-width: 1px;
+        background: #ffffff00;
+        transition: all ease 0.2s;
+        flex-grow: 1;
+        margin-right: 8px;
+        font-weight: bold;
+
+        @include res.tablet-up {
+            padding: 8px;
+        }
+
+        &:hover {
+            background: linear-gradient( #ffffff00 50%, #ffffff11 100%);
+        }
+    }
+
+    &__profile {
+        object-fit: cover;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+
+        @include res.tablet-up {
+            margin-left: 8px;
+        }
     }
 }
