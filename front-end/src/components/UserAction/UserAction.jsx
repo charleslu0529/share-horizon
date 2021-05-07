@@ -9,7 +9,7 @@ function UserAction(props) {
         event.preventDefault();
         axios
             .post(`${api.apiUrl}${api.usersEndpoint}/logout`)
-            .then(()=>{
+            .then(() => {
                 props.updateUser();
             })
             .catch((error) =>
@@ -27,10 +27,14 @@ function UserAction(props) {
                 Sign Out
             </button>
             <Link
-                to={`/profile/${props.user._id}`}
+                to={`/profile`}
                 className={classes.userAction__profile}
             >
-                <img src={props.user.image} alt={props.user.name} />
+                <img
+                    src={`${api.apiUrl}/images/${props.user.image}`}
+                    alt={props.user.name}
+                    className={classes.userAction__profile}
+                />
             </Link>
         </div>
     );

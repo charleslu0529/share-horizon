@@ -1,0 +1,8 @@
+@use "../../styles/partials/variables" as var;
+@use "../../styles/partials/responsive" as res;
+@use "../../styles/partials/functions" as func;
+
+.details{
+    background-color: var.$light;
+    padding: 20px;
+}

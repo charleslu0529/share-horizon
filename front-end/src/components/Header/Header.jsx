@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../Logo/Logo";
 import classes from "./header.module.scss";
-import searchIcon from "../../assets/images/icons/search-icon.svg";
+import searchIcon from "../../assets/icons/search-icon.svg";
 import GuestAction from "../GuestAction/GuestAction";
 import UserAction from "../UserAction/UserAction";
 

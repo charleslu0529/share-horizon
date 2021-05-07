@@ -6,9 +6,16 @@ import axios from "axios";
 import api from "./utils/api-details";
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
+import UserProfile from "./components/UserProfile/UserProfile";
 
 function App() {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({
+        _id: "6092090a4613a059fc8c1787",
+        name: "Charles",
+        username: "test@test.com",
+        email: "test@test.com",
+        image: "20200313_202417_001.jpg",
+    });
 
     const getUser = () => {
         axios
@@ -26,8 +33,8 @@ function App() {
     };
 
     useEffect(() => {
-        getUser();
-    },[]);
+        // getUser();
+    }, []);
 
     // useEffect(()=>{
     //     console.log(user);
@@ -41,7 +48,7 @@ function App() {
                     <Route
                         path="/"
                         exact
-                        render={(props) => <Browse {...props} />}
+                        render={(props) => <Browse {...props} user={user}/>}
                     />
                     <Route
                         path="/login"
@@ -58,6 +65,11 @@ function App() {
                         path="/sign-up"
                         exact
                         render={(props) => <SignUp {...props} />}
+                    />
+                    <Route
+                        path="/profile"
+                        exact
+                        render={(props) => <UserProfile {...props} user={user}/>}
                     />
                 </Switch>
             </main>

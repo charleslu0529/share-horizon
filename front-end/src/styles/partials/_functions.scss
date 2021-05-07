@@ -1,0 +1,16 @@
+@use './variables' as var;
+
+@function rem-size($pixel-size) {
+    $result: $pixel-size/16px * 1rem;
+    @return $result;
+}
+
+@function size-ratio($width, $height) {
+    $result: $height/$width;
+    @return $result;
+}
+
+@function size-to-vw($width, $height) {
+    $result: size-ratio($width, $height) * 100vw;
+    @return $result;
+}

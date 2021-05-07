@@ -1,0 +1,50 @@
+@use "../../styles/partials/variables" as var;
+@use "../../styles/partials/responsive" as res;
+@use "../../styles/partials/functions" as func;
+
+.userBanner {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 16px func.size-to-vw(var.$mobile, 16px);
+    background-image: linear-gradient(rgba(var.$primary, 0.6), rgba(var.$primary, 0.6)), url("../../assets/images/profile-banner.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+
+    @include res.tablet-up{
+        padding: 16px func.size-to-vw(var.$tablet, 24px);
+        justify-content: flex-start;
+    }
+
+    @include res.laptop-up{
+        padding: 16px func.size-to-vw(var.$laptop, 180px);
+    }
+
+    &__profile{
+        width: func.size-to-vw(var.$mobile, 80px);
+        border-radius: 50%;
+
+        @include res.tablet-up{
+            width: 120px;
+            margin-right: 20px;
+        }
+    }
+
+    &__textContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__name{
+        font-size: 24px;
+    }
+
+    &__button {
+        background-color: var.$light;
+
+        &:hover{
+            background-color: var.$primary;
+        }
+    }
+}
