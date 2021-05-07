@@ -24,6 +24,9 @@ router.post("/", async (req, res) => {
     const design = new Designs({
         title: req.body.title,
         description: req.body.description,
+        userID:req.body.userID,
+        images:req.body.images,
+        featured:req.body.featured
     });
 
     try {
