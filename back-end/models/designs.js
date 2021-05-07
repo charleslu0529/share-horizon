@@ -7,10 +7,15 @@ const design = mongoose.Schema({
     },
     description: String,
     date: { type: Date, default: Date.now },
-    // user: {
-    //     type: Number,
-    //     required: true,
-    // },
+    userID: {
+        type: String,
+        required: true,
+    },
+    images:Array,
+    featured:{
+        type:String,
+        required:true,
+    }
 });
 
 module.exports = mongoose.model("designs", design);
