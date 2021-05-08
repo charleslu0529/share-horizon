@@ -58,7 +58,7 @@ function Upload(props) {
             featured: featured,
         };
 
-        console.log(imageFiles);
+        // console.log(imageFiles);
 
         // axios
         //     .post(`${api.apiUrl}${api.designsEndpoint}`, design)

@@ -12,20 +12,42 @@
 
     &__label {
         margin-top: 8px;
+
+        @include res.laptop-up{
+            width: 50%;
+            align-self: center;
+        }
     }
 
     &__input {
         margin: 8px 0;
+
+        @include res.laptop-up{
+            width: 50%;
+            align-self: center;
+        }
     }
 
     &__previewContainer{
         padding-top:32px;
         padding-bottom: 32px;
+
+        @include res.tablet-up{
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
     }
 
     &__button {
         margin-top: 16px;
         margin-bottom: 48px;
+
+        @include res.laptop-up{
+            width: 50%;
+            align-self: center;
+            font-size: 32px;
+        }
     }
 
     &__preview {
@@ -33,5 +55,13 @@
         height: 70vw;
         object-fit:scale-down;
         margin: 16px 0;
+
+        @include res.tablet-up{
+            width: 47%;
+            height: initial;
+        }
+        @include res.laptop-up{
+            width: 24%;
+        }
     }
 }
