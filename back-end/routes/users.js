@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.get("/current", (req, res)=> {
+router.get("/current", (req, res) => {
     res.status(200).send(req.user);
 });
 
@@ -52,7 +52,7 @@ router.post("/login", (req, res, next) => {
     })(req, res, next);
 });
 
-router.post("/logout", (req,res)=>{
+router.post("/logout", (req, res) => {
     req.logout();
     res.status(200).send("User logged out");
 });

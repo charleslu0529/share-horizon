@@ -5,9 +5,8 @@ import api from "../../utils/api-details";
 
 function Upload(props) {
     const [images, setImages] = useState(null);
-    const [imageBlob, setImageBlob] = useState(null);
     const [input, setInput] = useState({});
-    const [featured, setFeatured] = useState("");
+    const [featured, setFeatured] = useState(0);
 
     const handleFileChange = (event) => {
         let newImages = [];
@@ -26,48 +25,42 @@ function Upload(props) {
         setInput({ ...input, [event.target.name]: event.target.value });
     };
 
-    const handleImageClick = (source) => {
-        console.log(source);
+    const handleImageClick = (index) => {
+        setFeatured(index);
     };
 
     const handleUpload = (event) => {
         event.preventDefault();
 
-        const formImageData = new FormData();
+        const formData = new FormData();
 
         images.forEach((image) => {
-            formImageData.append(
-                `${image.image.lastModified}${image.image.name}`,
+            formData.append(
+                "imageFiles",
                 image.image
             );
         });
 
-        const imageUrls = [];
         const imageFiles = [];
 
         images.forEach((image) => {
-            imageUrls.push(`${image.image.lastModified}${image.image.name}`);
             imageFiles.push(image.image);
         });
 
-        const design = {
-            title: input.title,
-            description: input.description,
-            userID: props.user._id,
-            images: imageUrls,
-            featured: featured,
-        };
+        formData.set("title", input.title);
+        formData.set("description", input.description);
+        formData.set("userID", props.user._id);
+        formData.set("featured", featured);
 
-        // console.log(imageFiles);
-
-        // axios
-        //     .post(`${api.apiUrl}${api.designsEndpoint}`, design)
-        //     .then(() => {
-        //         props.history.push("/");
-        //     })
-        //     .catch((error) =>
-        //         console.error("Error uploading new design", error)
-        //     );
+        axios
+            .post(`${api.apiUrl}${api.designsEndpoint}`, formData)
+            .then((response) => {
+                console.log(response);
+                props.history.push("/profile");
+            })
+            .catch((error) =>
+                console.error("Error uploading new design", error)
+            );
     };
 
     let imagePreview = images ? (
@@ -78,7 +71,7 @@ function Upload(props) {
                         key={index}
                         className={classes.upload__preview}
                         src={image.url}
-                        onClick={() => handleImageClick(image)}
+                        onClick={() => handleImageClick(index)}
                     />
                 ))}
             </div>
@@ -118,7 +111,7 @@ function Upload(props) {
                     multiple
                     accept="image/*"
                     onChange={handleFileChange}
-                    className={classes.upload__chooseFile}
+                    className={`${classes.upload__chooseFile} ${classes.upload__input}`}
                 />
                 {imagePreview}
             </form>
