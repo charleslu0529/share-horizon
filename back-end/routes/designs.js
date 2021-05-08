@@ -1,6 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const Designs = require("../models/designs");
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "public/images");
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + "-" + file.originalname);
+    },
+});
+
+const upload = multer({storage});
 
 router.get("/", async (req, res) => {
     try {
@@ -20,13 +32,13 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", upload.array("imageFiles") ,async (req, res) => {
     const design = new Designs({
         title: req.body.title,
         description: req.body.description,
         userID:req.body.userID,
-        images:req.body.images,
-        featured:req.body.featured
+        images:req.files.map(file=>file.filename),
+        featured:req.files[req.body.featured].filename
     });
 
     try {
