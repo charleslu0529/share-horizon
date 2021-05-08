@@ -15,7 +15,15 @@ function UserDesign(props) {
         </Link>
     ));
 
-    return <div className={classes.designs}>{designsToShow}</div>;
+    return (
+        <div className={classes.designs}>
+            <h2>Designs</h2>
+            <Link to="/upload" className={`button ${classes.designs__upload}`}>
+                Upload
+            </Link>
+            {designsToShow}
+        </div>
+    );
 }
 
 export default UserDesign;

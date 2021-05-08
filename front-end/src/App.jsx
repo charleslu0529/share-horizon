@@ -7,6 +7,7 @@ import api from "./utils/api-details";
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import UserProfile from "./components/UserProfile/UserProfile";
+import Upload from "./components/Upload/Upload";
 
 function App() {
     const [user, setUser] = useState({
@@ -48,7 +49,7 @@ function App() {
                     <Route
                         path="/"
                         exact
-                        render={(props) => <Browse {...props} user={user}/>}
+                        render={(props) => <Browse {...props} user={user} />}
                     />
                     <Route
                         path="/login"
@@ -69,7 +70,14 @@ function App() {
                     <Route
                         path="/profile"
                         exact
-                        render={(props) => <UserProfile {...props} user={user}/>}
+                        render={(props) => (
+                            <UserProfile {...props} user={user} />
+                        )}
+                    />
+                    <Route
+                        path="/upload"
+                        exact
+                        render={(props) => <Upload {...props} user={user} />}
                     />
                 </Switch>
             </main>
