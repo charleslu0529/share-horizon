@@ -33,6 +33,11 @@ input{
     }
 }
 
+a {
+    text-decoration: none;
+    color: var.$text;
+}
+
 .button {
     color: var.$text;
     text-decoration: none;

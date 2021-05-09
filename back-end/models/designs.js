@@ -11,6 +11,8 @@ const design = mongoose.Schema({
         type: String,
         required: true,
     },
+    userImage: String,
+    userName: String,
     images:Array,
     featured:{
         type:String,

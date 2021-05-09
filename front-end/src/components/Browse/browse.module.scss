@@ -1,0 +1,18 @@
+@use "../../styles/partials/variables" as var;
+@use "../../styles/partials/responsive" as res;
+@use "../../styles/partials/functions" as func;
+
+.browse {
+    padding: 32px func.size-to-vw(var.$mobile, 16px);
+
+    @include res.tablet-up{
+        padding: 32px func.size-to-vw(var.$tablet, 32px);
+    }
+    @include res.laptop-up{
+        padding: 32px func.size-to-vw(var.$laptop, 180px);
+    }
+
+    &__title {
+        margin-bottom: 36px;
+    }
+}
