@@ -4,6 +4,18 @@ import api from "../../utils/api-details";
 import { Link } from "react-router-dom";
 
 function UserBanner(props) {
+    let editProfile =
+        props.user._id === props.match.params.userID ? (
+            <Link
+                to={`/edit/profile`}
+                className={`button ${classes.userBanner__button}`}
+            >
+                Edit
+            </Link>
+        ) : (
+            <></>
+        );
+
     return (
         <div className={classes.userBanner}>
             <img
@@ -13,12 +25,7 @@ function UserBanner(props) {
             />
             <div className={classes.userBanner__textContainer}>
                 <h1 className={classes.userBanner__name}>{props.user.name}</h1>
-                <Link
-                    to={`/edit/profile`}
-                    className={`button ${classes.userBanner__button}`}
-                >
-                    Edit
-                </Link>
+                {editProfile}
             </div>
         </div>
     );

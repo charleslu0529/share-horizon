@@ -7,10 +7,10 @@ import classes from './user-profile.module.scss';
 function UserProfile(props) {
     return (
         <div className={classes.profile}>
-            <UserBanner user={props.user}/>
+            <UserBanner {...props}/>
             <div className={classes.profile__content}>
-                <UserDetails user={props.user}/>
-                <UserDesign />
+                <UserDetails {...props}/>
+                <UserDesign {...props}/>
             </div>
         </div>
     )
