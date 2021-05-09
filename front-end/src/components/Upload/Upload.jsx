@@ -72,6 +72,7 @@ function Upload(props) {
                         className={classes.upload__preview}
                         src={image.url}
                         onClick={() => handleImageClick(index)}
+                        alt="upload preview"
                     />
                 ))}
             </div>

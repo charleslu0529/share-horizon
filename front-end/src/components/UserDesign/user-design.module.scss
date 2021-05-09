@@ -1,10 +1,71 @@
+@use "../../styles/partials/variables" as var;
+@use "../../styles/partials/responsive" as res;
+@use "../../styles/partials/functions" as func;
+
 .designs {
 
-    &__design {
-        
+    @include res.tablet-up{
+        width: 65vw;
+        padding-left: 32px;
     }
 
-    &__upload{
+    &__design {
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin: 32px 0;
+        border: 1px solid var.$theme;
+        
 
+        @include res.tablet-up{
+            width: 200px;
+        }
+
+        @include res.laptop-up{
+            width: 300px;
+        }
+    }
+
+    &__designLink {
+        transition: box-shadow ease 0.2s;
+        border-bottom: 1px solid var.$theme;
+
+        &:hover {
+            box-shadow: 0 0 10px 0px var.$theme;
+        }
+    }
+
+    &__designTitle {
+        padding: 0 16px;
+    }
+
+    &__container {
+        @include res.tablet-up{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    &__edit {
+        position: absolute;
+        right: 16px;
+        top: 16px;
+
+        background-color: rgba($color: var.$primary, $alpha: 0.8);
+
+        &:hover {
+            background-color: var.$primary;
+        }
+    }
+
+    &__upload {
     }
 }

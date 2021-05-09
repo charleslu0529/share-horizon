@@ -68,7 +68,7 @@ function App() {
                         render={(props) => <SignUp {...props} />}
                     />
                     <Route
-                        path="/profile"
+                        path="/profile/:userID"
                         exact
                         render={(props) => (
                             <UserProfile {...props} user={user} />

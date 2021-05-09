@@ -10,6 +10,10 @@
         padding: 30px;
 
         @include res.tablet-up{
+            justify-content: space-around;
+        }
+
+        @include res.tablet-up{
             flex-direction: row;
             padding:50px
         }
