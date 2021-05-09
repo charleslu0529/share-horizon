@@ -1,0 +1,47 @@
+@use "../../styles/partials/variables" as var;
+@use "../../styles/partials/responsive" as res;
+@use "../../styles/partials/functions" as func;
+
+.card {
+    border-radius: 5px;
+    width: 100%;
+    overflow: hidden;
+    background-color: var.$light;
+
+    @include res.tablet-up {
+        width: 48%;
+    }
+
+    @include res.laptop-up {
+        width: 30%;
+    }
+
+    &__link {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__image {
+        width: 100%;
+        display: block;
+    }
+
+    &__user {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        background-color: var.$text;
+    }
+
+    &__details {
+        display: flex;
+        align-items: center;
+        padding: 8px 16px;
+    }
+
+    &__title {
+        padding: 0 16px;
+    }
+}

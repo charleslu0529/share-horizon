@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Designs = require("../models/designs");
 const multer = require("multer");
+const Users = require("../models/users");
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -45,10 +46,15 @@ router.get("/user/:userID", async (req, res) => {
 });
 
 router.post("/", upload.array("imageFiles"), async (req, res) => {
+
+    const designUser = await Users.findById(req.body.userID);
+
     const design = new Designs({
         title: req.body.title,
         description: req.body.description,
         userID: req.body.userID,
+        userImage: designUser.image,
+        userName: designUser.name,
         images: req.files.map((file) => file.filename),
         featured: req.files[req.body.featured].filename,
     });
