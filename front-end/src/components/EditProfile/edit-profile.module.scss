@@ -5,24 +5,24 @@
 .edit {
     padding: 32px func.size-to-vw(var.$mobile, 16px);
 
-    @include res.tablet-up{
+    @include res.tablet-up {
         padding: 48px func.size-to-vw(var.$tablet, 24px);
     }
 
-    @include res.laptop-up{
+    @include res.laptop-up {
         padding: 48px func.size-to-vw(var.$laptop, 180px);
     }
 
-    &__form{
+    &__form {
         display: flex;
         flex-direction: column;
 
-        @include res.tablet-up{
+        @include res.tablet-up {
             flex-direction: row;
         }
     }
 
-    &__container{
+    &__container {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -31,7 +31,7 @@
     &__containerRight {
         display: flex;
         flex-direction: column;
-        flex-grow: 1
+        flex-grow: 1;
     }
 
     &__upload {
@@ -42,7 +42,20 @@
         border-radius: 50%;
         object-fit: cover;
         margin-bottom: 16px;
+        width: func.size-to-vw(var.$mobile, 160px);
+        height: func.size-to-vw(var.$mobile, 160px);
         max-width: 200px;
+        max-height: 200px;
+
+        @include res.tablet-up {
+            width: func.size-to-vw(var.$tablet, 160px);
+            height: func.size-to-vw(var.$tablet, 160px);
+        }
+
+        @include res.laptop-up {
+            width: func.size-to-vw(var.$laptop, 160px);
+            height: func.size-to-vw(var.$laptop, 160px);
+        }
     }
 
     &__label {
@@ -62,7 +75,7 @@
         }
     }
 
-    &__button{
+    &__button {
         margin-top: 16px;
         font-size: 24px;
     }
