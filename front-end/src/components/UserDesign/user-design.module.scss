@@ -68,5 +68,9 @@
     }
 
     &__upload {
+
+        &:hover {
+            background-color: var.$primary;
+        }
     }
 }

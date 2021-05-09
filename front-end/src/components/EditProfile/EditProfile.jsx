@@ -33,8 +33,16 @@ function EditProfile(props) {
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
+        const formData = new FormData();
+
+        formData.set("image", input.image);
+        formData.set("name", input.name);
+        formData.set("email", input.email);
+        formData.set("location", input.location);
+        formData.set("about", input.about);
+
         axios
-            .put(`${api.apiUrl}${api.usersEndpoint}/${props.user._id}`, input)
+            .put(`${api.apiUrl}${api.usersEndpoint}/${props.user._id}`, formData)
             .then((response) => {
                 props.history.push("/");
             })

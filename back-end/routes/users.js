@@ -3,6 +3,19 @@ const router = express.Router();
 const Users = require("../models/users");
 const bcrypt = require("bcryptjs");
 const passport = require("../Authentication/authenticator");
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "public/images");
+    },
+    filename: (req, file, cb) => {
+        const cleanedFilename = file.originalname.replace(/\s/g, '');
+        cb(null, Date.now() + "-" + cleanedFilename);
+    },
+});
+
+const upload = multer({ storage });
 
 router.get("/", async (req, res) => {
     try {
@@ -39,9 +52,9 @@ router.post("/", async (req, res) => {
     });
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id",upload.single("image"), async (req, res) => {
 
-    const newUserData = {
+    let newUserData = {
         username: req.body.email,
         email: req.body.email,
         name: req.body.name,
@@ -49,10 +62,14 @@ router.put("/:id", async (req, res) => {
         about: req.body.about,
     };
 
+    if (req.file) {
+        newUserData.image = req.file.filename;
+    }
+
     try {
         const result = await Users.updateOne(
             { _id: req.params.id },
-            newUserData
+            {$set: newUserData}
         );
         res.status(200).send(result);
     } catch (error) {
