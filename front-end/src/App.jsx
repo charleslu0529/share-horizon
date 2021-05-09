@@ -8,6 +8,7 @@ import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import UserProfile from "./components/UserProfile/UserProfile";
 import Upload from "./components/Upload/Upload";
+import Design from "./components/Design/Design";
 
 function App() {
     const [user, setUser] = useState({
@@ -78,6 +79,11 @@ function App() {
                         path="/upload"
                         exact
                         render={(props) => <Upload {...props} user={user} />}
+                    />
+                    <Route
+                        path="/design/:id"
+                        exact
+                        render={(props) => <Design {...props} user={user} />}
                     />
                 </Switch>
             </main>

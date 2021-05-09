@@ -1,0 +1,30 @@
+@use "../../styles/partials/variables" as var;
+@use "../../styles/partials/responsive" as res;
+@use "../../styles/partials/functions" as func;
+
+.design {
+    padding: 0 func.size-to-vw(var.$mobile, 16px) 32px;
+
+    &__mainImage {
+        width: 100%;
+        height: 60vw;
+        object-fit: cover;
+    }
+
+    &__selection {
+        margin-top: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    &__image {
+        width: 23%;
+        object-fit: cover;
+        margin: 4px 0;
+
+        @include res.tablet-up {
+            width: 15%;
+        }
+    }
+}
