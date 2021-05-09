@@ -2,15 +2,18 @@ import React from "react";
 import axios from "axios";
 import classes from "./user-action.module.scss";
 import api from "../../utils/api-details";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function UserAction(props) {
+
+    const history = useHistory();
     const handleLogOut = (event) => {
         event.preventDefault();
         axios
             .post(`${api.apiUrl}${api.usersEndpoint}/logout`)
             .then(() => {
                 props.updateUser();
+                history.push("/");
             })
             .catch((error) =>
                 console.error("Error when trying to log out", error)
