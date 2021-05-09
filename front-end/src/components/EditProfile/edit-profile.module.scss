@@ -1,0 +1,69 @@
+@use "../../styles/partials/variables" as var;
+@use "../../styles/partials/responsive" as res;
+@use "../../styles/partials/functions" as func;
+
+.edit {
+    padding: 32px func.size-to-vw(var.$mobile, 16px);
+
+    @include res.tablet-up{
+        padding: 48px func.size-to-vw(var.$tablet, 24px);
+    }
+
+    @include res.laptop-up{
+        padding: 48px func.size-to-vw(var.$laptop, 180px);
+    }
+
+    &__form{
+        display: flex;
+        flex-direction: column;
+
+        @include res.tablet-up{
+            flex-direction: row;
+        }
+    }
+
+    &__container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__containerRight {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1
+    }
+
+    &__upload {
+        margin: 16px 0;
+    }
+
+    &__image {
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 16px;
+        max-width: 200px;
+    }
+
+    &__label {
+        margin-top: 8px;
+    }
+
+    &__input {
+        margin: 8px 0;
+    }
+
+    &__textarea {
+        padding: 6px;
+        resize: vertical;
+
+        &:focus {
+            box-shadow: inset 0 0 5px var.$primary;
+        }
+    }
+
+    &__button{
+        margin-top: 16px;
+        font-size: 24px;
+    }
+}

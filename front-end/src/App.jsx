@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router";
+import { Route, Switch, useHistory } from "react-router";
 import Browse from "./components/Browse/Browse";
 import Header from "./components/Header/Header";
 import axios from "axios";
@@ -9,6 +9,7 @@ import SignUp from "./components/SignUp/SignUp";
 import UserProfile from "./components/UserProfile/UserProfile";
 import Upload from "./components/Upload/Upload";
 import Design from "./components/Design/Design";
+import EditProfile from "./components/EditProfile/EditProfile";
 
 function App() {
     const [user, setUser] = useState({
@@ -18,6 +19,9 @@ function App() {
         email: "test@test.com",
         image: "20200313_202417_001.jpg",
     });
+    let history = useHistory();
+
+    const [searchTerm, setSearchTerm] = useState(null);
 
     const getUser = () => {
         axios
@@ -42,15 +46,33 @@ function App() {
     //     console.log(user);
     // });
 
+    const updateSearchTerm = (event) => {
+        event.preventDefault();
+        setSearchTerm(event.target.search.value);
+        if (history.location.pathname !== "/") {
+            history.push("/");
+        }
+    };
+
     return (
         <div className="App">
-            <Header user={user} updateUser={getUser} />
+            <Header
+                user={user}
+                updateUser={getUser}
+                handleFormSubmit={updateSearchTerm}
+            />
             <main>
                 <Switch>
                     <Route
                         path="/"
                         exact
-                        render={(props) => <Browse {...props} user={user} />}
+                        render={(props) => (
+                            <Browse
+                                {...props}
+                                user={user}
+                                searchTerm={searchTerm}
+                            />
+                        )}
                     />
                     <Route
                         path="/login"
@@ -84,6 +106,13 @@ function App() {
                         path="/design/:id"
                         exact
                         render={(props) => <Design {...props} user={user} />}
+                    />
+                    <Route
+                        path="/edit/profile"
+                        exact
+                        render={(props) => (
+                            <EditProfile {...props} user={user} />
+                        )}
                     />
                 </Switch>
             </main>
