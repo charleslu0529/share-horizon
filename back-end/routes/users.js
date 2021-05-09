@@ -39,6 +39,27 @@ router.post("/", async (req, res) => {
     });
 });
 
+router.put("/:id", async (req, res) => {
+
+    const newUserData = {
+        username: req.body.email,
+        email: req.body.email,
+        name: req.body.name,
+        location: req.body.location,
+        about: req.body.about,
+    };
+
+    try {
+        const result = await Users.updateOne(
+            { _id: req.params.id },
+            newUserData
+        );
+        res.status(200).send(result);
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
+});
+
 router.post("/login", (req, res, next) => {
     passport.authenticate("local", (error, user, info) => {
         if (error) throw error;

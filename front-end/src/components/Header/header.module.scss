@@ -18,7 +18,9 @@
 
     &__search {
         position: relative;
-        padding: 8px 0;
+        margin: 8px 0;
+        overflow: hidden;
+        border-radius: 5px;
 
         @include res.tablet-up {
             margin-left: auto;
@@ -37,8 +39,8 @@
         outline: none;
         border: none;
         position: absolute;
-        right: 16px;
-        top: 8px;
+        right: 0;
+        top: 0;
         padding: 4px 8px;
 
         &:hover {

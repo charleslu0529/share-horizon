@@ -16,6 +16,7 @@
         flex-direction: column;
         margin: 32px 0;
         border: 1px solid var.$theme;
+        background-color: var.$light;
         
 
         @include res.tablet-up{

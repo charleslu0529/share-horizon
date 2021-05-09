@@ -12,13 +12,14 @@ function Header(props) {
     return (
         <header className={classes.header}>
             <Logo />
-            <form className={classes.header__search}>
+            <form className={classes.header__search} onSubmit={props.handleFormSubmit}>
                 <input
                     type="text"
                     placeholder="Search..."
                     className={classes.header__input}
+                    name="search"
                 />
-                <button className={classes.header__searchButton}>
+                <button className={classes.header__searchButton} type="submit">
                     <img
                         src={searchIcon}
                         alt="search"

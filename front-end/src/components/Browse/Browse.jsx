@@ -4,7 +4,7 @@ import classes from "./browse.module.scss";
 import api from "../../utils/api-details";
 import Card from "../Card/Card";
 
-function Browse() {
+function Browse(props) {
     const [designs, setDesigns] = useState(null);
 
     useEffect(() => {
@@ -21,8 +21,12 @@ function Browse() {
             );
     }, []);
 
-    let cards = designs ? (
-        designs.map((design) => <Card key={design._id} design={design} />)
+    let designsToShow = props.searchTerm && designs
+        ? designs.filter((design) => design.title.includes(props.searchTerm))
+        : designs;
+
+    let cards = designsToShow ? (
+        designsToShow.map((design) => <Card key={design._id} design={design} />)
     ) : (
         <></>
     );

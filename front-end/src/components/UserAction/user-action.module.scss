@@ -19,11 +19,13 @@
         margin-right: 8px;
         font-weight: bold;
 
+        &:hover{
+            cursor: pointer;
+        }
+
         @include res.tablet-up {
             padding: 8px;
         }
-
-        
     }
 
     &__profile {
