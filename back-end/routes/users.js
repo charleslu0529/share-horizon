@@ -30,6 +30,15 @@ router.get("/current", (req, res) => {
     res.status(200).send(req.user);
 });
 
+router.get("/:id", async (req, res) => {
+    try {
+        const requestedUser = await Users.findById(req.params.id);
+        res.status(200).json(requestedUser);
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
+});
+
 router.post("/", async (req, res) => {
     Users.findOne({ username: req.body.username }, async (error, doc) => {
         if (error) throw error;
@@ -84,7 +93,7 @@ router.post("/login", (req, res, next) => {
         else {
             req.login(user, (error) => {
                 if (error) throw error;
-                res.send("Logged in successfully");
+                res.status(200).send("Successfully logged in");
             });
         }
     })(req, res, next);

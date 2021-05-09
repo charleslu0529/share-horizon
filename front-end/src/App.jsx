@@ -12,22 +12,15 @@ import Design from "./components/Design/Design";
 import EditProfile from "./components/EditProfile/EditProfile";
 
 function App() {
-    const [user, setUser] = useState({
-        _id: "6092090a4613a059fc8c1787",
-        name: "Charles",
-        username: "test@test.com",
-        email: "test@test.com",
-        image: "20200313_202417_001.jpg",
-    });
+    const [user, setUser] = useState(null);
     let history = useHistory();
 
     const [searchTerm, setSearchTerm] = useState(null);
 
     const getUser = () => {
         axios
-            .get(api.apiUrl + api.usersEndpoint + api.currentUser)
+            .get(api.apiUrl +api.usersEndpoint+ api.currentUser)
             .then((response) => {
-                console.log("Getting user", response.data);
                 setUser(response.data);
             })
             .catch((error) => {
@@ -39,12 +32,8 @@ function App() {
     };
 
     useEffect(() => {
-        // getUser();
+        getUser();
     }, []);
-
-    // useEffect(()=>{
-    //     console.log(user);
-    // });
 
     const updateSearchTerm = (event) => {
         event.preventDefault();
