@@ -100,7 +100,7 @@ function App() {
                         path="/edit/profile"
                         exact
                         render={(props) => (
-                            <EditProfile {...props} user={user} />
+                            <EditProfile {...props} user={user} updateUser={getUser}/>
                         )}
                     />
                 </Switch>

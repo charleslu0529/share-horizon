@@ -23,10 +23,12 @@
 
     &__profile{
         width: func.size-to-vw(var.$mobile, 80px);
+        height: func.size-to-vw(var.$mobile, 80px);
         border-radius: 50%;
 
         @include res.tablet-up{
             width: 120px;
+            height: 120px;
             margin-right: 20px;
         }
     }

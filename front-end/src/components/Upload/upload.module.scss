@@ -5,6 +5,14 @@
 .upload {
     padding: 0 func.size-to-vw(var.$mobile, 16px);
 
+    @include res.tablet-up{
+        padding: 0 func.size-to-vw(var.$tablet, 24px);
+    }
+
+    @include res.laptop-up{
+        padding: 0 func.size-to-vw(var.$laptop, 180px);
+    }
+
     &__form{
         display: flex;
         flex-direction: column;

@@ -16,17 +16,18 @@ function EditProfile(props) {
     );
 
     const handleInputChange = (event) => {
-        if (event.target.type === "text") {
-            setInput({
-                ...input,
-                [event.target.name]: event.target.value,
-            });
-        } else if (event.target.type === "file") {
+        if (event.target.type === "file") {
             setInput({
                 ...input,
                 [event.target.name]: event.target.files[0],
             });
             setImageUrl(URL.createObjectURL(event.target.files[0]));
+            
+        } else {
+            setInput({
+                ...input,
+                [event.target.name]: event.target.value,
+            });
         }
     };
 
@@ -41,9 +42,12 @@ function EditProfile(props) {
         formData.set("location", input.location);
         formData.set("about", input.about);
 
+        // console.log(input.about);
+
         axios
             .put(`${api.apiUrl}${api.usersEndpoint}/${props.user._id}`, formData)
             .then((response) => {
+                props.updateUser();
                 props.history.push("/");
             })
             .catch((error) =>

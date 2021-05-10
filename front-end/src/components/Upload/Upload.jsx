@@ -56,7 +56,7 @@ function Upload(props) {
             .post(`${api.apiUrl}${api.designsEndpoint}`, formData)
             .then((response) => {
                 console.log(response);
-                props.history.push("/profile");
+                props.history.push(`/profile/${props.user._id}`);
             })
             .catch((error) =>
                 console.error("Error uploading new design", error)

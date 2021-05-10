@@ -5,4 +5,21 @@
 .details{
     background-color: var.$light;
     padding: 20px;
+    
+    @include res.tablet-up {
+        max-width: 280px;
+    }
+
+    @include res.laptop-up {
+        max-width: 340px;
+    }
+
+    &__text{
+        font-size: 18px;
+        line-height: 140%;
+    }
+
+    &__label{
+        color: var.$theme-light;
+    }
 }
