@@ -21,7 +21,18 @@ function UserDesign(props) {
                     error
                 )
             );
-    }, []);
+    }, [props.profile]);
+
+    const handleDelete = (event, id) => {
+        event.preventDefault();
+
+        axios
+            .delete(`${api.apiUrl}${api.designsEndpoint}/${id}`)
+            .then(() => {
+                props.history.go(0);
+            })
+            .catch((error) => console.error("Could not delete"));
+    };
 
     const isUserLoggedIn = props.user._id === props.match.params.userID;
 
@@ -38,12 +49,9 @@ function UserDesign(props) {
                 />
             </Link>
             {isUserLoggedIn ? (
-                <Link
-                    to={`/edit/${item._id}`}
-                    className={`button ${classes.designs__edit}`}
-                >
-                    Edit
-                </Link>
+                <button className={`button ${classes.designs__delete}`} onClick={(event)=>{handleDelete(event, item._id)}}>
+                    Delete
+                </button>
             ) : (
                 <></>
             )}

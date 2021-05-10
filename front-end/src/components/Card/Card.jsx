@@ -1,9 +1,27 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../utils/api-details";
 import classes from "./card.module.scss";
 
 function Card(props) {
+
+    const [creatorImage, setCreatorImage] = useState("profile.jpg")
+
+    useEffect(() => {
+        axios
+            .get(`${api.apiUrl}${api.usersEndpoint}/${props.design.userID}`)
+            .then(response=>{
+                setCreatorImage(response.data.image)
+            })
+            .catch((error) =>
+                console.error(
+                    "Error fetching user data on single card component",
+                    error
+                )
+            );
+    }, []);
+
     return (
         <div className={classes.card}>
             <Link
@@ -22,7 +40,7 @@ function Card(props) {
                     className={classes.card__link}
                 >
                     <img
-                        src={`${api.apiUrl}/images/${props.design.userImage}`}
+                        src={`${api.apiUrl}/images/${creatorImage}`}
                         alt={props.design.userName}
                         className={classes.card__user}
                     />

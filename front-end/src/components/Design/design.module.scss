@@ -4,11 +4,32 @@
 
 .design {
     padding: 0 func.size-to-vw(var.$mobile, 16px) 32px;
+    display: flex;
+    flex-direction: column;
+
+    @include res.tablet-up {
+        padding: 0 func.size-to-vw(var.$tablet, 24px) 32px;
+    }
+    @include res.laptop-up {
+        padding: 0 func.size-to-vw(var.$laptop, 180px) 32px;
+    }
 
     &__mainImage {
         width: 100%;
         height: 60vw;
         object-fit: cover;
+        align-self: center;
+
+        @include res.tablet-up{
+            width: 80%;
+            height: 50vw;
+            height: initial;
+        }
+        @include res.laptop-up{
+            width: 70%;
+            height: 40vw;
+            height: initial;
+        }
     }
 
     &__selection {
@@ -25,6 +46,10 @@
 
         @include res.tablet-up {
             width: 15%;
+        }
+
+        @include res.laptop-up {
+            width: 5%;
         }
     }
 }

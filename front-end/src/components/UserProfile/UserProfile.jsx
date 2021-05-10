@@ -23,7 +23,7 @@ function UserProfile(props) {
                     error
                 )
             );
-    }, []);
+    }, [props.location.pathname]);
 
     let profileInfo = profile ? (
         <div className={classes.profile}>

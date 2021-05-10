@@ -7,15 +7,16 @@
     &__content{
         display: flex;
         flex-direction: column;
-        padding: 30px;
+        padding: 30px func.size-to-vw(var.$mobile, 16px);
 
         @include res.tablet-up{
             justify-content: space-around;
+            flex-direction: row;
+            padding: 30px func.size-to-vw(var.$tablet, 24px);
         }
 
-        @include res.tablet-up{
-            flex-direction: row;
-            padding:50px
+        @include res.laptop-up{
+            padding:50px func.size-to-vw(var.$laptop, 180px);
         }
     }
 }

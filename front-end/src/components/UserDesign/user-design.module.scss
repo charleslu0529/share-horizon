@@ -14,7 +14,7 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        margin: 32px 0;
+        margin: 32px 8px 32px 0;
         border: 1px solid var.$theme;
         background-color: var.$light;
         
@@ -44,7 +44,7 @@
     &__container {
         @include res.tablet-up{
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             flex-wrap: wrap;
         }
     }
@@ -55,7 +55,7 @@
         display: block;
     }
 
-    &__edit {
+    &__delete {
         position: absolute;
         right: 16px;
         top: 16px;

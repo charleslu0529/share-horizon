@@ -4,16 +4,16 @@
 
 .header {
     background-color: var.$primary;
-    padding: 0 func.size-to-vw(var.$mobile, 16px);
+    padding: 0 func.size-to-vw(var.$mobile, 16px) 8px;
 
     @include res.tablet-up {
         display: flex;
         justify-content: flex-end;
-        padding: 0 func.size-to-vw(var.$tablet, 32px);
+        padding: 8px func.size-to-vw(var.$tablet, 32px);
     }
 
     @include res.laptop-up{
-        padding: 0 func.size-to-vw(var.$laptop, 180px);
+        padding: 8px func.size-to-vw(var.$laptop, 180px);
     }
 
     &__search {

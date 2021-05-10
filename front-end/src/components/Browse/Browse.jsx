@@ -21,9 +21,12 @@ function Browse(props) {
             );
     }, []);
 
-    let designsToShow = props.searchTerm && designs
-        ? designs.filter((design) => design.title.includes(props.searchTerm))
-        : designs;
+    let designsToShow =
+        props.searchTerm && designs
+            ? designs.filter((design) =>
+                  design.title.includes(props.searchTerm)
+              )
+            : designs;
 
     let cards = designsToShow ? (
         designsToShow.map((design) => <Card key={design._id} design={design} />)
@@ -34,7 +37,7 @@ function Browse(props) {
     return (
         <div className={classes.browse}>
             <h1 className={classes.browse__title}>Browse Design</h1>
-            {cards}
+            <div className={classes.browse__container}>{cards}</div>
         </div>
     );
 }

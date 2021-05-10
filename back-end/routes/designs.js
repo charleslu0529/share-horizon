@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
         cb(null, "public/images");
     },
     filename: (req, file, cb) => {
-        const cleanedFilename = file.originalname.replace(/\s/g, '');
+        const cleanedFilename = file.originalname.replace(/\s/g, "");
         cb(null, Date.now() + "-" + cleanedFilename);
     },
 });
@@ -47,15 +47,10 @@ router.get("/user/:userID", async (req, res) => {
 });
 
 router.post("/", upload.array("imageFiles"), async (req, res) => {
-
-    const designUser = await Users.findById(req.body.userID);
-
     const design = new Designs({
         title: req.body.title,
         description: req.body.description,
         userID: req.body.userID,
-        userImage: designUser.image,
-        userName: designUser.name,
         images: req.files.map((file) => file.filename),
         featured: req.files[req.body.featured].filename,
     });
@@ -70,8 +65,8 @@ router.post("/", upload.array("imageFiles"), async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
     try {
-        const removedDesign = Designs.remove({ _id: req.params.id });
-        res.status(200).json(removedDesign);
+        const removedDesign = await Designs.remove({ _id: req.params.id });
+        res.status(200).send(removedDesign);
     } catch (error) {
         res.status(500).send({ message: error });
     }

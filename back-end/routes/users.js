@@ -50,6 +50,7 @@ router.post("/", async (req, res) => {
                 username: req.body.username,
                 email: req.body.username,
                 password: hashedPassword,
+                image:"profile.jpg"
             });
             try {
                 await newUser.save();

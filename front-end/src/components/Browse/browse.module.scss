@@ -15,4 +15,14 @@
     &__title {
         margin-bottom: 36px;
     }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+
+        @include res.tablet-up{
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+    }
 }
