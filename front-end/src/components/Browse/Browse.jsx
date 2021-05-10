@@ -24,7 +24,7 @@ function Browse(props) {
     let designsToShow =
         props.searchTerm && designs
             ? designs.filter((design) =>
-                  design.title.includes(props.searchTerm)
+                  design.title.toLowerCase().includes(props.searchTerm)
               )
             : designs;
 

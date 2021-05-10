@@ -37,7 +37,7 @@ function App() {
 
     const updateSearchTerm = (event) => {
         event.preventDefault();
-        setSearchTerm(event.target.search.value);
+        setSearchTerm(event.target.search.value.toLowerCase());
         if (history.location.pathname !== "/") {
             history.push("/");
         }
